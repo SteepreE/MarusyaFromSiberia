@@ -9,6 +9,10 @@ def orders(request):
     return render(request, 'orders.html', context)
 
 
+def login(request):
+    return render(request, 'login.html')
+
+
 def add_order(request):
     return render(request, 'add_order.html')
 
