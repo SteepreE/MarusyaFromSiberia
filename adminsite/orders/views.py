@@ -4,9 +4,22 @@ from . import models
 from django.contrib.auth.views import login_required
 
 
+class Order:
+    product = "Пиджак"
+    current_stage = "Пошив"
+    id = 1
+    client = "Яков"
+
+
 @login_required(login_url='/login', redirect_field_name='')
 def orders(request):
-    context = {'orders': models.Order.objects.all()}
+    orders = [Order() for x in range(8)]
+    print(dict(request.GET.items()))
+
+    context = {
+        'orders': orders,
+        'filter_atrs': ['Название','Стадия производства','Дата','Клиент']
+    }
 
     return render(request, 'orders.html', context)
 

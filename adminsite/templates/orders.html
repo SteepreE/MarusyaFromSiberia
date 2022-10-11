@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="row">
+    {% for order in orders %}
+        <div class="col-lg-5">
+            <div class="card border-dark m-1 rounded-0">
+                <div class="card-header bg-white">
+                    <h5 class="card-title"> {{order.product}} </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"> {{order.current_stage}} </p>
+                </div>
+                <div class="card-footer bg-white d-flex justify-content-between">
+                    <a href={{order.id}} class="btn btn-dark">Подробнее</a>
+                    <p class="card-text"> {{order.client}} </p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block filter %}
+<div id="searchbtn" class="btn btn-dark" onclick="search = document.getElementById('search'); search.hidden = !search.hidden">Фильтр</div>
+    <form id="search" action="{% url 'orders' %}" class="" method="get">
+        {% for atr in filter_atrs %}
+        <div class="m-2">
+            <label for="{{ atr }}" class="form-label">{{ atr }}</label>
+            <input name="{{ atr }}" class="form-control" type="text" id="{{ atr }}" >
+        </div>
+        {% endfor %}
+
+        <div class="m-2">
+            <button class="w-100 btn btn-dark" type="submit" value="Submit">Поиск</button>
+        </div>
+    </form>
+
+{% endblock %}
