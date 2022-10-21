@@ -1,7 +1,7 @@
-{% extends "base.html" %}
+{% extends "base_storage.html" %}
 
 
-{% block content %}
+{% block storage %}
 <div class="row">
     {% for order in orders %}
         <div class="col-lg-5">
@@ -22,8 +22,8 @@
 </div>
 {% endblock %}
 
-{% block filter %}
-<div id="searchbtn" class="btn btn-dark" onclick="search = document.getElementById('search'); search.hidden = !search.hidden">Фильтр</div>
+{% block filters %}
+<div id="searchbtn" class="w-100 btn btn-dark" onclick="search = document.getElementById('search'); search.hidden = !search.hidden">Фильтр</div>
     <form id="search" action="{% url 'orders' %}" class="" method="get">
         {% for atr in filter_atrs %}
         <div class="m-2">
@@ -36,5 +36,4 @@
             <button class="w-100 btn btn-dark" type="submit" value="Submit">Поиск</button>
         </div>
     </form>
-
 {% endblock %}
