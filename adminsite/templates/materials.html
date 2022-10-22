@@ -1,0 +1,17 @@
+{% extends "base_storage.html" %}
+
+{% block storage %}
+    {% for material in materials %}
+        <div class="border border-dark mt-2 p-1">
+            <p>{{ material.name }}</p>
+            <p>{{ material.count }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block filters %}
+    <form action="{% url 'add_material' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-dark">Добавить</button>
+    </form>
+{% endblock %}
